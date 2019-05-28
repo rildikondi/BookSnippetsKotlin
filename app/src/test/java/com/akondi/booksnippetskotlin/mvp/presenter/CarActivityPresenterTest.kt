@@ -40,7 +40,6 @@ class CarActivityPresenterTest {
 
     private lateinit var presenter: CarActivityPresenter
 
-
     private val EMPTY_RESPONSE = CarsResponse()
     private val MANY_CARS = CarsResponse()
     private val carsResponsePlacemarks = arrayOf(CarsResponsePlacemarks(), CarsResponsePlacemarks(), CarsResponsePlacemarks())
@@ -54,7 +53,6 @@ class CarActivityPresenterTest {
 
         RxJavaPlugins.setIoSchedulerHandler { scheduler -> Schedulers.trampoline() }
         RxJavaPlugins.setComputationSchedulerHandler { scheduler -> Schedulers.trampoline() }
-
         //RxAndroidPlugins.setInitMainThreadSchedulerHandler(schedulerCallable -> Schedulers.trampoline());
     }
 
@@ -97,103 +95,4 @@ class CarActivityPresenterTest {
 
         Mockito.verify(presenter.view).onShowToast("Error loading cars: " + "boom")
     }
-
 }
-
-//@RunWith(PowerMockRunner::class)
-//@PrepareForTest(Observable::class, AndroidSchedulers::class, Looper::class, CarsResponse::class)
-//class CarActivityPresenterTest {
-//
-//    val TEST_ERROR_MESSAGE = "error_message"
-//
-//    @InjectMocks
-//    private lateinit var presenter: CarActivityPresenter
-//
-//    @Mock
-//    private lateinit var mApiService: CarApiService
-//
-//    @Mock
-//    private lateinit var mCakeMapper: CarMapper
-//
-//    @Mock
-//    private lateinit var mStorage: Storage
-//
-//    @Mock
-//    private lateinit var mView: CarActivityView
-//
-//    @Mock
-//    private lateinit var mObservable: Observable<CarsResponse>
-//
-//    @Captor
-//    private lateinit var captor: ArgumentCaptor<Subscriber<CarsResponse>>
-//
-////    private val mRxJavaSchedulersHook = object : RxJava2CallAdapterFactory {
-////        val ioScheduler: Scheduler
-////            get() = Schedulers.io()
-////
-////        val newThreadScheduler: Scheduler
-////            get() = Schedulers.newThread()
-////    }
-//
-//    @Before
-//    @Throws(Exception::class)
-//    fun setUp() {
-//        initMocks(this)
-//
-//        val cars = ArrayList<Car>()
-//        cars.add(Car())
-//        `when`(mStorage!!.savedCars).thenReturn(cars)
-//    }
-//
-//    @Test
-//    @Throws(Exception::class)
-//    fun getCakes() {
-//        PowerMockito.mockStatic(Looper::class.java)
-//        `when`(AndroidSchedulers.mainThread()).thenReturn(Schedulers.computation())
-//
-//        `when`(mApiService!!.getCars()).thenReturn(mObservable)
-//        //        when(observable.subscribeOn(Schedulers.newThread())).thenReturn(observable);
-//        //        when(observable.observeOn(AndroidSchedulers.mainThread())).thenReturn(observable);
-//
-//        presenter!!.getCars()
-//        verify(mView, atLeastOnce())!!.onShowDialog("Loading cakes....")
-//    }
-//
-//    @Test
-//    @Throws(Exception::class)
-//    fun onCompleted() {
-//        presenter!!.onComplete()
-//        verify(mView, times(1))!!.onHideDialog()
-//        verify(mView, times(1))!!.onShowToast("Cakes loading complete!")
-//    }
-//
-//    @Test
-//    @Throws(Exception::class)
-//    fun onError() {
-//        presenter!!.onError(Throwable(TEST_ERROR_MESSAGE))
-//        verify(mView, times(1))!!.onHideDialog()
-//        verify(mView, times(1))!!.onShowToast("Error loading cakes $TEST_ERROR_MESSAGE")
-//    }
-//
-//    @Test
-//    @Throws(Exception::class)
-//    fun onNext() {
-//        val response = mock(CarsResponse::class.java)
-//        val responseCars = arrayOfNulls<CarsResponsePlacemarks>(1)
-//        //`when`(response.placemarks).thenReturn(responseCars)
-//        presenter!!.onNext(response)
-//
-//        verify(mCakeMapper, times(1)).mapCars(response, mStorage)
-//        //verify(mView, times(1)).onClearItems()
-//        verify(mView, times(1)).onCarsLoaded(anyList())
-//    }
-//
-//    @Test
-//    @Throws(Exception::class)
-//    fun getCarsFromDatabase() {
-//        presenter!!.getCarsFromDatabase()
-//        //verify(mView, times(1))!!.onClearItems()
-//        verify(mView, times(1))!!.onCarsLoaded(anyList())
-//    }
-//
-//}
