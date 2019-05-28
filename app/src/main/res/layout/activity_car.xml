@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="#d4d4d4"
+              tools:context=".modules.car.CarActivity">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#dadad5"
+            android:textColor="#113344"
+            android:text="Cars List"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:padding="10dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_carList"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:padding="2dp"/>
+
+</LinearLayout>
